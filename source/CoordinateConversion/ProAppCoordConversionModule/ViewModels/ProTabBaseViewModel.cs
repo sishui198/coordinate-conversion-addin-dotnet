@@ -34,6 +34,7 @@ namespace ProAppCoordConversionModule.ViewModels
         {
             ActivatePointToolCommand = new CoordinateConversionLibrary.Helpers.RelayCommand(OnMapToolCommand);
             FlashPointCommand = new CoordinateConversionLibrary.Helpers.RelayCommand(OnFlashPointCommandAsync);
+            ClearPointsCommand = new CoordinateConversionLibrary.Helpers.RelayCommand(OnClearPointsCommandAsync);
 
             Mediator.Register(CoordinateConversionLibrary.Constants.RequestCoordinateBroadcast, OnBCNeeded);
             Mediator.Register("FLASH_COMPLETED", OnFlashCompleted);
@@ -43,6 +44,8 @@ namespace ProAppCoordConversionModule.ViewModels
 
         public CoordinateConversionLibrary.Helpers.RelayCommand ActivatePointToolCommand { get; set; }
         public CoordinateConversionLibrary.Helpers.RelayCommand FlashPointCommand { get; set; }
+
+        public CoordinateConversionLibrary.Helpers.RelayCommand ClearPointsCommand { get; set; }
 
         public static ProCoordinateGet proCoordGetter = new ProCoordinateGet();
 
@@ -249,13 +252,14 @@ namespace ProAppCoordConversionModule.ViewModels
             return result;
         }
 
-
         internal async virtual void OnFlashPointCommandAsync(object obj)
         {
             var point = obj as MapPoint;
 
             if(point == null)
                 return;
+
+            Mediator.NotifyColleagues(CoordinateConversionLibrary.Constants.RequestOutputUpdate, null);
 
             if (!IsToolActive)
             {
@@ -272,6 +276,15 @@ namespace ProAppCoordConversionModule.ViewModels
                 }
                 Mediator.NotifyColleagues("UPDATE_FLASH", point);
             });
+        }
+
+        internal async virtual void OnClearPointsCommandAsync(object obj)
+        {
+            foreach (var output in CoordinateConversionLibraryConfig.AddInConfig.OutputCoordinateList)
+            {
+                output.OutputCoordinate = "";
+                output.Props.Clear();
+            }
         }
 
         #region Private Methods

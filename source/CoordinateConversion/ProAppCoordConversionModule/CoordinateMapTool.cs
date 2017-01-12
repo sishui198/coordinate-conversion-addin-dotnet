@@ -116,6 +116,7 @@ namespace ProAppCoordConversionModule
                     mp = GeometryEngine.Project(mp, SpatialReferences.WGS84) as MapPoint;
 
                 Mediator.NotifyColleagues(CoordinateConversionLibrary.Constants.MOUSE_MOVE_POINT, mp);
+                Mediator.NotifyColleagues(CoordinateConversionLibrary.Constants.RequestOutputUpdate, null);
             }
         }
 
@@ -149,6 +150,7 @@ namespace ProAppCoordConversionModule
             if (mp != null)
             {
                 Mediator.NotifyColleagues(CoordinateConversionLibrary.Constants.MOUSE_MOVE_POINT, mp);
+                Mediator.NotifyColleagues(CoordinateConversionLibrary.Constants.RequestOutputUpdate, null);
             }
         }
     }

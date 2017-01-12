@@ -4,6 +4,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:libprop="clr-namespace:CoordinateConversionLibrary.Properties"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
@@ -47,6 +49,11 @@
             <ComboBox.InputBindings>
                 <KeyBinding Key="Enter" Command="{Binding FlashPointCommand}" />
             </ComboBox.InputBindings>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="KeyUp">
+                    <i:InvokeCommandAction Command="{Binding ClearPointsCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </ComboBox>
         <Button Grid.Column="1"
                 Margin="3,3,0,0"

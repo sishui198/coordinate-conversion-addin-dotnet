@@ -103,9 +103,11 @@ namespace CoordinateConversionLibrary.ViewModels
                     return;
 
                 _inputCoordinate = value;
+
+
                 ProcessInput(_inputCoordinate);
 
-                Mediator.NotifyColleagues(CoordinateConversionLibrary.Constants.RequestOutputUpdate, null);
+                //Mediator.NotifyColleagues(CoordinateConversionLibrary.Constants.RequestOutputUpdate, null);
 
                 RaisePropertyChanged(() => InputCoordinate);
             }

@@ -296,6 +296,11 @@ namespace CoordinateConversionLibrary.ViewModels
                             }
                             output.Props = props;
                         }
+                        else
+                        {
+                            output.OutputCoordinate = "";
+                            output.Props.Clear();
+                        }
                         break;
                     case CoordinateType.DMS:
                         CoordinateDMS cdms;
@@ -324,6 +329,11 @@ namespace CoordinateConversionLibrary.ViewModels
                                 }
                             }
                             output.Props = props;
+                        }
+                        else
+                        {
+                            output.OutputCoordinate = "";
+                            output.Props.Clear();
                         }
                         break;
                     case CoordinateType.DDM:
@@ -354,6 +364,11 @@ namespace CoordinateConversionLibrary.ViewModels
                             }
                             output.Props = props;
                         }
+                        else
+                        {
+                            output.OutputCoordinate = "";
+                            output.Props.Clear();
+                        }
                         break;
                     case CoordinateType.GARS:
                         CoordinateGARS gars;
@@ -366,6 +381,11 @@ namespace CoordinateConversionLibrary.ViewModels
                             props.Add(Properties.Resources.StringQuadrant, gars.Quadrant.ToString());
                             props.Add(Properties.Resources.StringKey, gars.Key.ToString());
                             output.Props = props;
+                        }
+                        else
+                        {
+                            output.OutputCoordinate = "";
+                            output.Props.Clear();
                         }
                         break;
                     case CoordinateType.MGRS:
@@ -380,6 +400,11 @@ namespace CoordinateConversionLibrary.ViewModels
                             props.Add(Properties.Resources.StringNorthing, mgrs.Northing.ToString("00000"));
                             output.Props = props;
                         }
+                        else
+                        {
+                            output.OutputCoordinate = "";
+                            output.Props.Clear();
+                        }
                         break;
                     case CoordinateType.USNG:
                         CoordinateUSNG usng;
@@ -393,6 +418,11 @@ namespace CoordinateConversionLibrary.ViewModels
                             props.Add(Properties.Resources.StringNorthing, usng.Northing.ToString("00000"));
                             output.Props = props;
                         }
+                        else
+                        {
+                            output.OutputCoordinate = "";
+                            output.Props.Clear();
+                        }
                         break;
                     case CoordinateType.UTM:
                         CoordinateUTM utm;
@@ -404,6 +434,11 @@ namespace CoordinateConversionLibrary.ViewModels
                             props.Add(Properties.Resources.StringEasting, utm.Easting.ToString("000000"));
                             props.Add(Properties.Resources.StringNorthing, utm.Northing.ToString("0000000"));
                             output.Props = props;
+                        }
+                        else
+                        {
+                            output.OutputCoordinate = "";
+                            output.Props.Clear();
                         }
                         break;
                     default:
